@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 
 @Entity
 public class OrderItem {
-
     @Id @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")
     private Long id;

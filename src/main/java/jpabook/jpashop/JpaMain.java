@@ -19,8 +19,6 @@ public class JpaMain {
 
             Order order = em.find(Order.class, 1L);
             Long memberId = order.getMemberId();
-
-
             tx.commit();
         }catch(Exception e){
             tx.rollback();

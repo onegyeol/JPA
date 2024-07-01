@@ -8,6 +8,7 @@ import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 
 public class JpaMain {
+
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello"); //애플리케이션 전체에 한개만 생성됨

@@ -20,7 +20,6 @@ public class JpaMain {
 
             Order order = new Order();
             order.addOrderItem(new OrderItem()); //주문 객체를 만들어 원하는 orderItem 넣음
-
             OrderItem orderItem = new OrderItem();
             orderItem.setOrder(order);
 

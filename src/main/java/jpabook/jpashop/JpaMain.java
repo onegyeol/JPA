@@ -6,6 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -17,8 +18,14 @@ public class JpaMain {
         tx.begin(); //db 트랜잭션 시작
         try{
 
-            Order order = em.find(Order.class, 1L);
-            Long memberId = order.getMemberId();
+            Order order = new Order();
+            order.addOrderItem(new OrderItem()); //주문 객체를 만들어 원하는 orderItem 넣음
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+
+            em.persist(orderItem);
+
             tx.commit();
         }catch(Exception e){
             tx.rollback();

@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
@@ -17,13 +18,12 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); //jpa의 모든 데이터 변경은 트랜잭션 안에서 진행필요
         tx.begin(); //db 트랜잭션 시작
         try{
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
 
-            Order order = new Order();
-            order.addOrderItem(new OrderItem()); //주문 객체를 만들어 원하는 orderItem 넣음
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
+            em.persist(book);
 
-            em.persist(orderItem);
 
             tx.commit();
         }catch(Exception e){

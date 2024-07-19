@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name="ORDERS")
-public class Order {
+public class Order extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
@@ -17,7 +17,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private List<Member> member = new ArrayList<>();
+    private Member member;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -39,12 +39,20 @@ public class Order {
         this.id = id;
     }
 
-    public List<Member> getMember() {
+    public Member getMember() {
         return member;
     }
 
-    public void setMember(List<Member> member) {
+    public void setMember(Member member) {
         this.member = member;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
     public List<OrderItem> getOrderItems() {

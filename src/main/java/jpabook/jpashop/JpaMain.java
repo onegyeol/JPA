@@ -18,13 +18,20 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); //jpa의 모든 데이터 변경은 트랜잭션 안에서 진행필요
         tx.begin(); //db 트랜잭션 시작
         try{
-            Book book = new Book();
-            book.setName("JPA");
-            book.setAuthor("김영한");
+            Member member = new Member();
+            member.setName("member1");
 
-            em.persist(book);
+            em.persist(member);
 
+            em.flush();
+            em.clear();
 
+            Member findMember1 = em.find(Member.class, member.getId());
+            System.out.println("member = " + findMember1.getClass());
+            Member findMember2 = em.getReference(Member.class, member.getId());
+            System.out.println("findMember = " + findMember2.getClass());
+
+            System.out.println("member == findMember : " + (findMember1 == findMember2));
             tx.commit();
         }catch(Exception e){
             tx.rollback();
